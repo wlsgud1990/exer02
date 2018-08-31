@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/layout/top.jspf" %> <!-- jspf파일만들어놨음 기본으로 -->
 
-<p>
-	<a href="/exer02/account/membership.jsp"><button>회 원 가 입</button></a>
-</p>
+
 </body>
 </html>

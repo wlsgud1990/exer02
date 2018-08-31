@@ -11,7 +11,7 @@ public class AccountDao {
 	String user = "dev";
 	String password = "oracle";
 	
-	public int addData(Map param) { //추가
+	public int addData(Map param) { //계정 생성
 		
 		try {
 			Connection conn = DriverManager.getConnection(url, user, password);
