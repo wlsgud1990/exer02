@@ -1,3 +1,4 @@
+<%@page import="java.sql.Date"%>
 <%@page import="java.util.*"%>
 <%@page import="beans.AccountDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -43,8 +44,12 @@
 <%if(chk==true){ %>
 	<h1> 로그인되었습니다.</h1>
 	<%
+		Date date = new Date(System.currentTimeMillis());//현재시간update
 		session.setAttribute("access_id", login_id); //접속한 id 세션에저장
+		
+		acd.addLoginData(login_id, date);
 	%>
+	<a href="home.jsp"><button>들어가기</button></a>
 <%}else{
 	response.sendRedirect("/exer02/index.jsp");
    }

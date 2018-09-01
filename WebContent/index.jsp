@@ -13,6 +13,6 @@
 		<label>PW:</label><input type="password" name="loginPw" placeholder="비밀번호를 입력해주세요" style="width: 230px;"><br/><br/>
 		<button type="submit">로그인하기</button><br/><br/>
 	</form>
-	<a href="/exer02/account/membership.jsp"><button>회 원 가 입</button></a>	
+	<a href="account/create.jsp"><button>회 원 가 입</button></a>	
 </body>
 </html>

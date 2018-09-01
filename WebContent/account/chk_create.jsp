@@ -32,7 +32,7 @@
 </head>
 <body style="text-align: center;">
 	<h1> 가입되었습니다.</h1>
-	<a href="/exer02/index.jsp"><button>로그인 하러가기</button></a>
+	<a href="../index.jsp"><button>로그인 하러가기</button></a>
 
 </body>
 </html>

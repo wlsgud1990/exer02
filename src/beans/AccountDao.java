@@ -74,4 +74,28 @@ public class AccountDao {
 		}
 	}
 	
+	//3.로그인데이터 저장
+	public int addLoginData(String login_id, Date date) {
+		try {
+			//1.연결
+			Connection conn = DriverManager.getConnection(url, user, password);
+			//2.쿼리문
+			String sql = "insert into loginlog values(?,?)";
+			//3.쿼리문준비
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//4.데이터추가
+			ps.setString(1, login_id);
+			ps.setDate(2, date);
+			//5.쿼리문실행
+			int r = ps.executeUpdate();
+			System.out.println("총 "+r+"개의 데이터가 추가되었습니다.");
+			//6.연결종료
+			conn.close();			
+			return 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 }
