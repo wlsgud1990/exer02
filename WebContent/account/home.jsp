@@ -7,4 +7,8 @@
 <title>【Welcome】</title>
 </head>
 <body style="text-align: center;">
-	<h1> W E L C O M E</h1>
+	<h1> 로그인되었습니다.</h1>
+
+
+</body>
+</html>
