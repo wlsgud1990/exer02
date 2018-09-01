@@ -5,15 +5,15 @@
     pageEncoding="UTF-8"%>
 <%
 	String id = request.getParameter("id"); //아이디
-	String pw = request.getParameter("pw"); //비번
+	String pass = request.getParameter("pass"); //비번
 	String name = request.getParameter("name"); // 이름
 	String gender = request.getParameter("gender"); // 성별
-	System.out.println(id+"/"+pw+"/"+name+"/"+gender);
+	System.out.println(id+"/"+pass+"/"+name+"/"+gender);
 	
 	//1.맵에담기
 	Map<String,String> param = new HashMap<>();
 	param.put("id", id);
-	param.put("pw", pw);
+	param.put("pass", pass);
 	param.put("name", name);
 	param.put("gender", gender);
 	
