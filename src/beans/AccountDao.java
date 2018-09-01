@@ -98,4 +98,37 @@ public class AccountDao {
 		}
 	}
 	
+	//4.접속한 아이디 정보 셀렉트 //20180901 수정중
+	public Map<String, Object> getLoginData(String id){
+		try {
+			//1.연결
+			Connection conn = DriverManager.getConnection(url, user, password);
+			//2.쿼리문
+			String sql = "select * from account where id = ?";
+			//3.쿼리문 준비
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//4.데이터추가
+			ps.setString(1, id);
+			//5.쿼리문실행
+			ResultSet rs = ps.executeQuery();
+			//6.저장할 맵 추가
+			Map<String,Object> ret;
+			//6.데이터조회
+			if(rs.next()) {
+				ret = new LinkedHashMap<>();
+				ret.put("id", rs.getString("id"));
+				ret.put("pass", rs.getString("pass"));
+				ret.put("name", rs.getString("name"));
+				ret.put("gender", rs.getString("gender"));
+			}else {
+				ret =null;
+			}
+			conn.close();
+			return ret;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

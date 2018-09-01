@@ -13,7 +13,8 @@
 	
 	<b><%=access_id %></b> 님 어서오세요!!<br/><br/>
 	
-	<a href=""><button>회원정보수정</button></a>
-	<button>로그아웃</button>
+	<a href="pw_update.jsp"><button>회원정보수정</button></a>
+	<a href="logout.jsp"><button>로그아웃</button></a>
+	
 </body>
 </html>
