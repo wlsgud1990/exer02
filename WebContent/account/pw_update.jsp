@@ -10,6 +10,11 @@
 	String get_pw = (String)user.get("pass");
 	String get_name = (String)user.get("name");
 	String get_gender = (String)user.get("gender");
+	
+	if("M".equals(get_gender)){
+		
+	}
+	
 %>    
 <!DOCTYPE html>
 <html>
@@ -20,13 +25,22 @@
 <body style="text-align: center;">
 	<h1> 회 원 가 입 </h1>
 	<form action="chk_update.jsp" method="post">
-		<label><b style="color: red">*</b> I D :</label><input type="text" name="id" value=<%=get_id%>/><br/><br/>
-		<label><b style="color: red">*</b> P W :</label><input type="text" name="pass" value=<%=get_pw%>/><br/><br/>
-		<label><b style="color: red">*</b> 이름 :</label><input type="text" name="name" value=<%=get_name%>/><br/><br/>
+		<label><b style="color: red">*</b> I D :</label><input type="text" name="id" value=<%=get_id%> style="color: gray" readonly/><br/><br/>
+		<label><b style="color: red">*</b> P W :</label><input type="text" name="pass" value=<%=get_pw%> /><br/><br/>
+		<label><b style="color: red">*</b> 이름 :</label><input type="text" name="name" value=<%=get_name%> /><br/><br/>
 		<label><b style="color: red">*</b> 성별 :</label>
-			<input type="radio" name="gender" value="M"/>남자
-			<input type="radio" name="gender" value="F"/>여자<br/><br/>
-		<button type="submit">가입</button>	
+			
+			<input type="radio" name="gender"   value="M" 
+				<%if("M".equals(get_gender)){%>
+					checked="checked"
+				<% }%>/>남자
+				
+			<input type="radio" name="gender" value="F" 
+				<%if("F".equals(get_gender)){%>
+					checked="checked"
+				<% }%>/>여자<br/><br/>
+				
+		<button type="submit">수정</button>	
 	</form>
 
 </body>

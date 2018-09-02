@@ -10,6 +10,11 @@
 	String gender = request.getParameter("gender"); // 성별
 	System.out.println(id+"/"+pass+"/"+name+"/"+gender);
 	
+	//0. 정규식 체크
+	boolean regex;
+	String id_regex = "^[a-zA-Z0-9]{3,11}"; //영문숫자4~12
+	String name_regex = "^[가-힣]+$";
+
 	//1.맵에담기
 	Map<String,String> param = new HashMap<>();
 	param.put("id", id);
@@ -20,7 +25,7 @@
 	//2.객체생성
 	AccountDao acd = new AccountDao();
 	//3.객체에 map insert
-	acd.addData(param);
+	//acd.addData(param);
 	
 	
 %>    
@@ -31,8 +36,13 @@
 <title>【Welcome】</title>
 </head>
 <body style="text-align: center;">
-	<h1> 가입되었습니다.</h1>
-	<a href="../index.jsp"><button>로그인 하러가기</button></a>
-
+	<%if(id.matches(id_regex) && name.matches(name_regex)){ 
+		acd.addData(param);%>
+		<h1> 가입되었습니다.</h1>
+		<a href="../index.jsp"><button>로그인 하러가기</button></a>
+	<%}else{ %>
+		<h1> 규칙<br/> -id: 영문+숫자(4~12) <br/>-이름: 한글만 공백불가능 (무제한)</h1>
+		<a href="create.jsp"><button>돌아가기</button></a>
+	<%} %>
 </body>
 </html>

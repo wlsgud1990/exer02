@@ -131,4 +131,31 @@ public class AccountDao {
 		}
 	}
 	
+	//5.접속한 아이디 수정하기
+	public int updateLoginData(String id, String pass , String name, String gender) {
+		try {
+			//1.연결
+			Connection conn = DriverManager.getConnection(url, user, password);
+			//2.쿼리문
+			String sql = "update account set pass =? , name =? , gender =? where id = ?";
+			//3.쿼리문대기
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//4.데이터추가
+			ps.setString(1, pass);
+			ps.setString(2, name);
+			ps.setString(3, gender);
+			ps.setString(4, id);
+			//5.쿼리문 실행
+			int r = ps.executeUpdate();		
+			System.out.println("r:"+r);
+			//6.연결종료
+			conn.close();
+			return r;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 }
