@@ -8,7 +8,7 @@
 <title>【Welcome】</title>
 </head>
 <body style="text-align: center;">
-	<h1> 회 원 가 입 </h1>
+	<h1> 회 원 가 입 </h1> 
 	<form action="chk_create.jsp" method="post">
 		<label><b style="color: red">*</b> I D :</label><input type="text" name="id"/><br/><br/>
 		<label><b style="color: red">*</b> P W :</label><input type="text" name="pass"/><br/><br/>
