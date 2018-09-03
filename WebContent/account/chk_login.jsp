@@ -51,7 +51,7 @@
 	%>
 	<a href="home.jsp"><button>들어가기</button></a>
 <%}else{
-	response.sendRedirect("/exer02/index.jsp");
+	response.sendRedirect("/exer02/index.jsp?mode=fail");
    }
 %>
 
