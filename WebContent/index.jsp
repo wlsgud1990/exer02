@@ -1,7 +1,14 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page errorPage="/login.jsp" %>    
 <%
-	String mode = request.getParameter("mode"); // 로그인실패시 mode=fail
+	if(session.getAttribute("login_condition")==null){ //1.로그인상태가아니면 login.jsp로 보냄
+		throw new RuntimeException();
+	}
+	String login_id = (String)session.getAttribute("login_id"); //로그인아이디
+	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");//포맷형식
+	
 %>    
 <!DOCTYPE html>
 <html>
@@ -10,18 +17,11 @@
 <title>【Welcome】</title>
 </head>
 <body style="text-align: center;">
-	<h1> W E L C O M E</h1>
-	<form action="/exer02/account/chk_login.jsp" method="post" autocomplete="off"><!-- autocomplete : 입력했던거안보이도록 -->
-		<label>I D:</label><input type="text" name="loginId" placeholder="아이디를 입력해주세요" style="width: 230px;"><br/><br/>
-		<label>PW:</label><input type="password" name="loginPw" placeholder="비밀번호를 입력해주세요" style="width: 230px;"><br/><br/>
-		<button type="submit">로그인하기</button><br/><br/>
-	</form>
-	<a href="account/create.jsp"><button>회 원 가 입</button></a>	
 	
-	<%if(mode != null && mode.equals("fail")){ %>
-		<p style="color: red; font-size: small;">
-			아이디 또는 비밀번호를 확인하세요. 
-		</p>
-	<%} %>
+	<b><%=login_id %></b> 님 어서오세요!!<br/><br/>
+	<a href="<%=application.getContextPath()%>/message/send.jsp"><button type="button">쪽지보내기</button></a>	
+	<a href="<%=application.getContextPath()%>/message/send_confirm.jsp"><button type="button">쪽지확인</button></a>	
+	<a href="<%=application.getContextPath()%>/account/pw_update.jsp"><button>회원정보수정</button></a>
+	<a href="<%=application.getContextPath()%>/logout.jsp"><button>로그아웃</button></a>
 </body>
 </html>

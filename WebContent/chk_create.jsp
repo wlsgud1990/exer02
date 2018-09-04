@@ -39,10 +39,10 @@
 	<%if(id.matches(id_regex) && name.matches(name_regex)){ 
 		acd.addData(param);%>
 		<h1> 가입되었습니다.</h1>
-		<a href="../index.jsp"><button>로그인 하러가기</button></a>
+		<a href="<%=application.getContextPath()%>/login.jsp"><button>로그인 하러가기</button></a>
 	<%}else{ %>
 		<h1> 규칙<br/> -id: 영문+숫자(4~12) <br/>-이름: 한글만 공백불가능 (무제한)</h1>
-		<a href="create.jsp"><button>돌아가기</button></a>
+		<a href="<%=application.getContextPath()%>/create.jsp"><button>돌아가기</button></a>
 	<%} %>
 </body>
 </html>

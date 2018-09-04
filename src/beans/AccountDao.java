@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,7 +99,7 @@ public class AccountDao {
 		}
 	}
 	
-	//4.접속한 아이디 정보 셀렉트 //20180901 수정중
+	//4.접속한 아이디 정보 셀렉트 //20180901 수정중, 로그인확인
 	public Map<String, Object> getLoginData(String id){
 		try {
 			//1.연결
@@ -157,5 +158,93 @@ public class AccountDao {
 			return -1;
 		}
 	}
+	
+	//6.쪽지보내기
+	public int sendMessage(Map param) {
+		try {
+			//1.연결
+			Connection conn = DriverManager.getConnection(url, user, password);
+			//2.쿼리문
+			String sql = "insert into message values(?,?,?,?,?,?)";
+			//3.쿼리문대기
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//4.? 값 넣기
+			ps.setString(1,(String)param.get("code"));
+			ps.setString(2,(String)param.get("sender"));
+			ps.setString(3,(String)param.get("receiver"));
+			ps.setString(4,(String)param.get("content"));
+			ps.setDate(5,(Date)param.get("senddate"));
+			ps.setDate(6,(Date)param.get("receivedate"));
+			//5.실행
+			int r = ps.executeUpdate();
+			//6.연결종료
+			conn.close();
+			return r;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
+	//7.쪽지확인
+	public List<Map<String,Object>> receiveMessage(String receiver){
+		try {
+			Connection conn = DriverManager.getConnection(url, user, password);
+			//1.쿼리문
+			String sql = "select * from message where receiver =?";
+			//2.쿼리문 대기
+			PreparedStatement ps = conn.prepareStatement(sql);
+			//2-1 ? 값
+			ps.setString(1, receiver);
+			//3.쿼리실행
+			ResultSet rs = ps.executeQuery();
+			//4.List
+			List<Map<String,Object>> list;
+			//5.출력
+			if(rs.next()) {
+				list = new ArrayList<>();
+				do {
+					Map<String,Object> map = new HashMap<>();
+					map.put("code", rs.getString("code"));
+					map.put("sender", rs.getString("sender"));
+					map.put("receiver", rs.getString("receiver"));
+					map.put("content", rs.getString("content"));
+					map.put("senddate", rs.getDate("senddate"));
+					map.put("receivedate", rs.getDate("receivedate"));
+					list.add(map);
+				}while(rs.next());
+			}else {
+				list = null;
+			}
+			conn.close();
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//8.쪽지확인시간
+		public int receiveDate(String code, Date receive) {
+			try {
+				//0.연결
+				Connection conn = DriverManager.getConnection(url, user, password);
+				//1.쿼리문
+				String sql = "update message set receivedate=? where code=?";
+				//2.준비
+				PreparedStatement ps = conn.prepareStatement(sql);
+				//3.파라미터
+				ps.setDate(1, receive);
+				ps.setString(2, code);
+				//4.실행
+				int r = ps.executeUpdate();
+				//5.연결종료
+				conn.close();
+				return r;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return -1;
+			}
+		}
 	
 }
