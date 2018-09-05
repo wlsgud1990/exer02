@@ -13,9 +13,9 @@
 	String serial = uuid.toString().split("-")[0];
 	
 	//5.쪽지보낸시간
-	Date senddate = new Date(System.currentTimeMillis()); 
+	Date senddate = new Date(System.currentTimeMillis());
 	
-	//6.map에담기
+	//6.map에담기 
 	Map<String,Object> param = new LinkedHashMap<>();
 	param.put("code", serial);
 	param.put("sender", sender);

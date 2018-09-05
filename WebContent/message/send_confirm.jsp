@@ -3,7 +3,7 @@
 <%@page import="beans.*"%>
 <%@page import="java.sql.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <%
 	Date receive= new Date(System.currentTimeMillis()); // 편지함확인시간
 	String receiver = (String)session.getAttribute("login_id"); //접속한사람
@@ -21,7 +21,7 @@
 </head>
 <body>
 	<p>
-	<%
+	<% 
 		if(info == null){
 	%>
 		<h2>받은쪽지가없습니다.</h2>

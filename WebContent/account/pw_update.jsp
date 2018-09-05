@@ -13,7 +13,7 @@
 	String get_pw = (String)user.get("pass");
 	String get_name = (String)user.get("name");
 	String get_gender = (String)user.get("gender");
-	
+	 
 %>    
 <!DOCTYPE html>
 <html>

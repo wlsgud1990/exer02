@@ -2,7 +2,7 @@
 <%@page import="java.util.Map"%>
 <%@page import="beans.AccountDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <%
 	String id = request.getParameter("id"); //아이디
 	String pass = request.getParameter("pass"); //비번

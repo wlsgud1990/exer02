@@ -17,7 +17,7 @@
 	AccountDao dao = new AccountDao();
 	Map info = dao.getLoginData(login_id);
 	//3.객체에 import
-	
+	 
 	
 %>
 <!DOCTYPE html>
