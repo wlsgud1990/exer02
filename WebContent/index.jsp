@@ -19,6 +19,7 @@
 <body style="text-align: center;">
 	
 	<b><%=login_id %></b> 님 어서오세요!!<br/><br/>
+	<a href="<%=application.getContextPath()%>/board/board.jsp"><button type="button">게시판</button></a>	
 	<a href="<%=application.getContextPath()%>/message/send.jsp"><button type="button">쪽지보내기</button></a>	
 	<a href="<%=application.getContextPath()%>/message/send_confirm.jsp"><button type="button">쪽지확인</button></a>	
 	<a href="<%=application.getContextPath()%>/account/pw_update.jsp"><button>회원정보수정</button></a>
