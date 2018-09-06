@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<body style="text-align: center;">
+<title>【Welcome】</title>
 </head>
-<body>
+<body style="text-align: center;">
+	<h1> W E L C O M E</h1>
+	<p style="text-align: right;">
+		<b><%=session.getAttribute("login_id") %></b> 님 어서오세요!!<br/><br/>
+	</p>
+	<p style="text-align: right;">
+		<a href="<%=application.getContextPath()%>/board/board.jsp"><button type="button">게시판</button></a>	
+		<a href="<%=application.getContextPath()%>/message/send.jsp"><button type="button">쪽지보내기</button></a>	
+		<a href="<%=application.getContextPath()%>/message/send_confirm.jsp"><button type="button">쪽지확인</button></a>	
+		<a href="<%=application.getContextPath()%>/account/pw_update.jsp"><button>회원정보수정</button></a>
+		<a href="<%=application.getContextPath()%>/logout.jsp"><button>로그아웃</button></a>
+	</p>
+	<hr>
+	
 	<h1>글 작 성</h1>
 	<form action="board_handle.jsp" method="post" enctype="multipart/form-data">
 		<label><b style="color: red">*</b> 제 목 :</label><input type="text" name="title" style="width: 500px;"/><br/><br/>

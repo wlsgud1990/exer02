@@ -26,5 +26,6 @@
   	<url-pattern>/account/*</url-pattern>
   	<url-pattern>/logout.jsp</url-pattern>
   	<url-pattern>/message/*</url-pattern>
+  	<url-pattern>/board/*</url-pattern>
   </filter-mapping>
 </web-app>

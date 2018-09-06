@@ -22,7 +22,18 @@
 <title>【Welcome】</title>
 </head>
 <body style="text-align: center;">
-	<h1> 회 원 가 입 </h1>
+	<h1> W E L C O M E</h1>
+	<p style="text-align: right;">
+		<b><%=session.getAttribute("login_id") %></b> 님 어서오세요!!<br/><br/>
+	</p>
+	<p style="text-align: right;">
+		<a href="<%=application.getContextPath()%>/board/board.jsp"><button type="button">게시판</button></a>	
+		<a href="<%=application.getContextPath()%>/message/send.jsp"><button type="button">쪽지보내기</button></a>	
+		<a href="<%=application.getContextPath()%>/message/send_confirm.jsp"><button type="button">쪽지확인</button></a>	
+		<a href="<%=application.getContextPath()%>/account/pw_update.jsp"><button>회원정보수정</button></a>
+		<a href="<%=application.getContextPath()%>/logout.jsp"><button>로그아웃</button></a>
+	</p>
+	<hr>
 	<form action="chk_update.jsp" method="post">
 		<label><b style="color: red">*</b> I D :</label><input type="text" name="id" value=<%=get_id%> style="color: gray" readonly/><br/><br/>
 		<label><b style="color: red">*</b> 현재  비밀번호 :</label><input type="text" name="pass" value=<%=get_pw%> /><br/><br/>

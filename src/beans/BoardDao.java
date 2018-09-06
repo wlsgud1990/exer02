@@ -24,7 +24,7 @@ public class BoardDao {
 		factory = builder.build(is);
 	}
 	
-	//6.board insert
+	//6.게시판등록
 	public int addBoard(Map param) {
 		SqlSession sql = factory.openSession();
 		try {
@@ -40,7 +40,7 @@ public class BoardDao {
 		
 	}
 	
-	//7.boear select
+	//7.게시판전부select
 	public List<Map> getBoard(){
 		//1.세션
 		SqlSession sql = factory.openSession();
@@ -54,5 +54,49 @@ public class BoardDao {
 			return null;
 		}
 		
+	}
+	
+	//8. 게시판상세 
+	public Map getOneByNo(int no) {
+		//1.세션
+		SqlSession sql = factory.openSession();
+		try {
+			Map detail_list = sql.selectOne("board.getOneBoard",no); // 파라미터안넘김
+			return detail_list;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//9 .추천
+	public int updateGood(int no) {
+		//1.세션
+		SqlSession sql = factory.openSession();
+		try {
+			int r = sql.update("board.incGoodByNo", no);
+			if(r==1) {
+				sql.commit();
+			}
+			return r;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	//10.추천로그
+	public int insertGoodlog(Map param) {
+		//세션
+		SqlSession sql = factory.openSession();
+		try {
+			int r = sql.insert("board.addGood",param);
+			if(r==1) {
+				sql.commit();
+			}
+			return r;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
 	}
 }
