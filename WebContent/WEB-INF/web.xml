@@ -15,12 +15,18 @@
   <listener>
   	<listener-class>handlers.SessionHandler</listener-class>
   </listener>
+   <listener>
+  	<listener-class>handlers.RequestHandler</listener-class>
+  </listener>
   
-  <!-- filter -->
+
+
+  <!-- filter2 -->
   <filter>
   	<filter-name>m</filter-name>
   	<filter-class>filters.AuthFilter</filter-class>
   </filter>
+  
   <filter-mapping>
   	<filter-name>m</filter-name>
   	<url-pattern>/account/*</url-pattern>
@@ -28,4 +34,5 @@
   	<url-pattern>/message/*</url-pattern>
   	<url-pattern>/board/*</url-pattern>
   </filter-mapping>
+  
 </web-app>

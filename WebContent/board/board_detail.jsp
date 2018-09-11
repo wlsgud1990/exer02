@@ -4,6 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	//1.board.jsp 에서 글번호 파라미터주소로넘김
+	//2.넘김글번호 받아서 조회쿼리문 실행 하면 해당건만 조회됨
+		
 	int no = Integer.parseInt(request.getParameter("no")); // 어떻게뽑지??....
 	BoardDao dao = new BoardDao();
 	Map detail = dao.getOneByNo(no);

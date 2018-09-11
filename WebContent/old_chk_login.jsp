@@ -8,9 +8,7 @@
 	//1.로그인했던 아이디 ,pw 파라미터값 받아오기
 	String login_id = request.getParameter("loginId");
 	String login_pw = request.getParameter("loginPw");
-	String login_chk = request.getParameter("keep"); // 체크안하면 null
-	
-	System.out.println("login_id:"+login_id+"/ login_pw :"+login_pw+"/ login_chk:"+login_chk);
+	System.out.println("login_id:"+login_id+"/ login_pw :"+login_pw);
 	//2.객체생성
 	AccountDao dao = new AccountDao();    
 	//3.account 테이블에있는 전체데이터 datas에 담음
@@ -21,22 +19,11 @@
 	if(info==null || !info.get("pass").equals(login_pw)){//★아이디로 맵조회했으니 비밀번호만비교하면됨
 		response.sendRedirect(application.getContextPath()+"/login.jsp?mode=fail");//실패시 login.jsp에 넘어감
 	}else{//패스워드가같으면(로그인성공)
-			Set<String> set = (Set)application.getAttribute("users");// 확인(다른브라우저에서도확인할수있으니)
-			//if(set.contains(login_id)){//아이디가 application에 등록되있으면
-			//	throw new RuntimeException(login_id+" 는 이미 로그인되어있습니다."); 
-			//}else{ //처음로그인일경우
+		Set<String> set = (Set)application.getAttribute("users");// 확인(다른브라우저에서도확인할수있으니)
+		if(set.contains(login_id)){//아이디가 application에 등록되있으면
+			throw new RuntimeException(login_id+" 는 이미 로그인되어있습니다."); 
+		}else{ //처음로그인일경우
 			set.add(login_id); // set에 login_id추가
-			
-			//Login상태유지
-			//----------쿠키로그인유지--------------------
-			if(login_chk!=null){ // 로그인유지 체크면
-				Cookie c = new Cookie("freepass",login_id); //쿠키생성
-				c.setMaxAge(60*60*2); // 2시간
-				c.setPath(application.getContextPath()); // 경로
-				response.addCookie(c);  
-			}
-			//----------쿠키로그인유지--------------------
-			
 			application.setAttribute("users", set);//application에 로그인id담음
 			
 			session.setAttribute("login_condition", true); //로그인확인 true
@@ -52,6 +39,6 @@
 				String dest =  (String)session.getAttribute("dest");
 				response.sendRedirect(dest);
 			}
-		//}
+		}
 	}
 %> 

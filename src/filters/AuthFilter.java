@@ -27,6 +27,7 @@ public class AuthFilter extends HttpFilter{
 			chain.doFilter(request, response); // 로그인됬으면 필터통과
 		}else {
 			response.setContentType("text/html;charset=UTF-8");
+			session.setAttribute("dest", request.getRequestURI());
 			//PrintWriter out = response.getWriter();
 			//out.println("accsee denied");
 			response.sendRedirect(request.getContextPath()+"/login.jsp");

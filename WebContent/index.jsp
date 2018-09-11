@@ -6,8 +6,11 @@
 	if(session.getAttribute("login_condition")==null){ //1.로그인상태가아니면 login.jsp로 보냄
 		throw new RuntimeException();
 	}
+	
 	String login_id = (String)session.getAttribute("login_id"); //로그인아이디
 	SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");//포맷형식
+	
+	
 	
 %>    
 <!DOCTYPE html>
